@@ -63,7 +63,7 @@
   }
   .subtitle {
     font-size: 0.82rem;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.65);
     letter-spacing: 0.04em;
     text-align: center;
     margin-bottom: 60px;
@@ -112,6 +112,16 @@
   }
 
   .card:active::after {
+    opacity: 1;
+  }
+
+  /* 키보드 포커스 스타일 (Tab 키로 이동 시) */
+  .card:focus-visible {
+    outline: 3px solid #b8892e;
+    outline-offset: 3px;
+  }
+
+  .card:focus-visible::after {
     opacity: 1;
   }
 
@@ -180,7 +190,7 @@
   /* ── 타임스탬프 ── */
   .timestamp {
     font-size: 0.68rem;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.5);
     letter-spacing: 0.06em;
     font-variant-numeric: tabular-nums;
   }
@@ -224,7 +234,7 @@
 <body>
 
 <!-- 전환 오버레이 -->
-<div class="overlay" id="overlay"></div>
+<div class="overlay" id="overlay" aria-hidden="true"></div>
 
 <div class="wrap">
 
@@ -235,41 +245,41 @@
 
   <div class="grid">
 
-    <a class="card" href="https://bostononnuri-admin.github.io/church-report/">
+    <a class="card" href="https://bostononnuri-admin.github.io/church-report/" aria-label="예배 인원계수 시스템으로 이동">
       <div class="card-num">01</div>
       <div class="card-title">예배<br>인원계수</div>
-      <div class="card-arrow">
+      <div class="card-arrow" aria-hidden="true">
         <svg viewBox="0 0 11 11"><polyline points="3,2 8,5.5 3,9"/></svg>
       </div>
     </a>
 
-    <a class="card" href="https://boston-onuri-reservation.vercel.app/">
+    <a class="card" href="https://boston-onuri-reservation.vercel.app/" aria-label="장소 예약 시스템으로 이동">
       <div class="card-num">02</div>
       <div class="card-title">장소<br>예약</div>
-      <div class="card-arrow">
+      <div class="card-arrow" aria-hidden="true">
         <svg viewBox="0 0 11 11"><polyline points="3,2 8,5.5 3,9"/></svg>
       </div>
     </a>
 
-    <a class="card" href="https://script.google.com/a/macros/bostononnuri.org/s/AKfycbyIISoIDlVfUTDMJilmEBAPjZ6XAm6p56Z6UeTpo6Q4PfP0L4SKrgyPAaI-8bU5G51njg/exec">
+    <a class="card" href="https://script.google.com/a/macros/bostononnuri.org/s/AKfycbyIISoIDlVfUTDMJilmEBAPjZ6XAm6p56Z6UeTpo6Q4PfP0L4SKrgyPAaI-8bU5G51njg/exec" aria-label="행정 및 재정 시스템으로 이동">
       <div class="card-num">03</div>
       <div class="card-title">행정·재정<br>시스템</div>
-      <div class="card-arrow">
+      <div class="card-arrow" aria-hidden="true">
         <svg viewBox="0 0 11 11"><polyline points="3,2 8,5.5 3,9"/></svg>
       </div>
     </a>
 
-    <a class="card" href="https://boston-onnuri-signup.vercel.app/">
+    <a class="card" href="https://boston-onnuri-signup.vercel.app/" aria-label="행사 신청서 관리 플랫폼으로 이동">
       <div class="card-num">04</div>
-      <div class="card-title">행사 신청서<br>플랫폼</div>
-      <div class="card-arrow">
+      <div class="card-title">행사 신청서<br>관리</div>
+      <div class="card-arrow" aria-hidden="true">
         <svg viewBox="0 0 11 11"><polyline points="3,2 8,5.5 3,9"/></svg>
       </div>
     </a>
 
   </div>
 
-  <div class="timestamp" id="ts"></div>
+  <div class="timestamp" id="ts" aria-label="현재 시각"></div>
 
 </div>
 

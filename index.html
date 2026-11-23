@@ -354,13 +354,22 @@
 </div>
 
 <script>
-  // 타임스탬프
+  // 타임스탬프 — 어디서 접속해도 보스턴 현지 시간, 서머타임에 따라 EDT/EST 자동 표시
+  const tsFormat = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+    hourCycle: 'h23',
+    timeZoneName: 'short'
+  });
   function updateTime() {
-    const now = new Date();
-    const pad = n => String(n).padStart(2,'0');
+    const p = {};
+    tsFormat.formatToParts(new Date()).forEach(part => { p[part.type] = part.value; });
+    const hour = p.hour === '24' ? '00' : p.hour;
+    let zone = p.timeZoneName;
+    if (zone !== 'EDT' && zone !== 'EST') zone = /4$/.test(zone) ? 'EDT' : 'EST';
     document.getElementById('ts').textContent =
-      `${now.getFullYear()}/${pad(now.getMonth()+1)}/${pad(now.getDate())}, ` +
-      `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())} (EDT)`;
+      `${p.year}/${p.month}/${p.day}, ${hour}:${p.minute}:${p.second} (${zone})`;
   }
   updateTime();
   setInterval(updateTime, 1000);
